@@ -40,16 +40,17 @@ workflow {
         }
         
         ch_reads.ifEmpty{ exit 1, "ERROR: Input csv file is empty." }
+        ch_input_csv = file( params.input_csv )
     }
     
     
-    ch_reads.view()
+    // ch_reads.view()
     ch_dummy_file = Channel.fromPath("$projectDir/assets/dummy_file.txt", checkIfExists: true).collect()
     // ch_dummy_file2 = Channel.fromPath("$projectDir/assets/dummy_file2.txt", checkIfExists: true).collect()
 
     
     WES_WF( 
-                params.input_csv,
+                ch_input_csv,
                 ch_reads,
                 ch_dummy_file,
                 params.min_reads
