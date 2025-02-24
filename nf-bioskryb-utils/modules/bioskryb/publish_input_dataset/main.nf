@@ -16,7 +16,7 @@ process PUBLISH_INPUT_DATASET {
 
     script:
     """
-        cat $file > input_dataset.csv
+    cat $file > input_dataset.csv
     """
     
 }
